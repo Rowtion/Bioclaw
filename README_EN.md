@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Bioclaw Logo" width="200">
+  <img src="assets/logo.svg" alt="Bioclaw Logo" width="200">
 </p>
 
 <h1 align="center">Bioclaw</h1>
