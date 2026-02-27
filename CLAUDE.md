@@ -4,10 +4,10 @@ This file provides context for AI agents working on this project.
 
 ## Project Overview
 
-AIpoch-claw is a biomedical AI research assistant that combines:
+AIpoch-claw is a scientific AI research assistant that combines:
 - **OpenClaw**: Conversational AI gateway for messaging platforms
 - **Opencode**: Code execution environment (alternative to Claude Code)
-- **AIPOCH Medical Research Skills**: 200+ curated medical research skills
+- **K-Dense Scientific Skills**: 140+ curated scientific computing skills
 
 ## Architecture
 
@@ -20,7 +20,7 @@ opencode-bridge skill
     ↓ HTTP API
 Opencode Server (localhost:4096)
     ↓
-AIPOCH Medical Research Skills (200+)
+K-Dense Scientific Skills (140+)
     ↓
 Docker Analysis Environment (R + Python)
     ├─ RStudio Server (:8787)
@@ -40,15 +40,15 @@ Docker Analysis Environment (R + Python)
 - RStudio Server and JupyterLab for interactive analysis
 
 ### 3. Skill Library (`scientific-skills/`)
-- Downloaded from https://github.com/aipoch/medical-research-skills
-- 200+ skills across clinical research, bioinformatics, data analysis
+- Downloaded from https://github.com/K-Dense-AI/claude-scientific-skills
+- 140+ skills across bioinformatics, data analysis, literature search, lab tools
 - Downloaded during `setup.sh` execution
 
 ## Development Guidelines
 
 ### Adding New Skills
 1. Create skill directory under appropriate category
-2. Write SKILL.md following AIPOCH format
+2. Write SKILL.md following K-Dense format
 3. Add to `scientific-skills/` directory
 4. Test with Opencode directly
 
@@ -75,7 +75,7 @@ docker-compose up -d
 python skills/opencode-bridge/scripts/bridge.py "test message"
 ```
 
-### Update AIPOCH Skills
+### Update K-Dense Skills
 ```bash
 cd scientific-skills
 git pull
@@ -86,5 +86,5 @@ cd ..
 
 - OpenClaw: https://github.com/openclaw/openclaw
 - Opencode: https://opencode.dev
-- AIPOCH: https://AIPOCH.com
-- AIPOCH Skills: https://github.com/aipoch/medical-research-skills
+- K-Dense: https://k-dense.ai
+- K-Dense Skills: https://github.com/K-Dense-AI/claude-scientific-skills

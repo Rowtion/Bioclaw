@@ -10,13 +10,15 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Rowtion/AIpoch-claw/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+  </a>
+  <a href="https://github.com/Rowtion/AIpoch-claw">
+    <img src="https://img.shields.io/badge/Skills-140+-green.svg" alt="Skills: 140+">
+  </a>
   <a href="https://opencode.dev">
     <img src="https://img.shields.io/badge/Powered%20by-Opencode-orange.svg" alt="Powered by Opencode">
   </a>
-</p>
-
-<p align="center">
-  <strong>English</strong> | <a href="README_CN.md">中文</a>
 </p>
 
 ---
@@ -314,7 +316,6 @@ AIpoch-claw/
 ├── CLAUDE.md                   # AI agent context
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── LICENSE                     # MIT License
-├── README_EN.md                # English documentation
 └── README.md                   # This file
 ```
 
@@ -328,6 +329,17 @@ Ways to contribute:
 - 📝 Improve documentation
 - 🔧 Submit bug fixes
 - ✨ Add new scientific computing skills
+
+## Comparison with Similar Projects
+
+| Aspect | MedgeClaw | AIpoch-claw |
+|--------|-----------|-------------|
+| Execution Engine | Claude Code | **Opencode** (self-hosted) |
+| Skill Library | K-Dense (140 skills) | **K-Dense Scientific Skills** |
+| Gateway | OpenClaw | **OpenClaw** |
+| Analysis Environment | Docker | **Docker** |
+| Messaging Platforms | WhatsApp/Slack/Discord | **Feishu/WhatsApp/Slack/Discord** |
+| API Flexibility | Anthropic only | **Multiple providers supported** |
 
 ## License
 

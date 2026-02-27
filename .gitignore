@@ -18,9 +18,6 @@ data/*
 outputs/*
 !outputs/.gitkeep
 
-# AIPOCH Skills (downloaded during setup)
-scientific-skills/
-
 # IDE
 .idea/
 .vscode/
