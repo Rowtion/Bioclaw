@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # R + Python 分析环境
+  analysis-env:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: aipoch-analysis
+    ports:
+      - "0.0.0.0:8787:8787"  # RStudio Server - 允许远程访问
+      - "0.0.0.0:8888:8888"  # JupyterLab - 允许远程访问
+    volumes:
+      - ./data:/home/rstudio/data
+      - ./outputs:/home/rstudio/outputs
+      - ./skills:/home/rstudio/skills
+    environment:
+      - PASSWORD=${RSTUDIO_PASSWORD:-aipoch}
+      - ROOT=TRUE
+    restart: unless-stopped
+    networks:
+      - aipoch-network
+
+  # Opencode 服务 (启用远程访问)
+  opencode:
+    image: node:22-alpine
+    container_name: aipoch-opencode
+    ports:
+      - "0.0.0.0:4096:4096"
+    volumes:
+      - .:/workspace
+      - ~/.opencode:/root/.opencode
+      - /var/run/docker.sock:/var/run/docker.sock  # 允许运行 Docker
+    working_dir: /workspace
+    command: npx opencode serve --port 4096 --host 0.0.0.0
+    environment:
+      - NODE_ENV=production
+    networks:
+      - aipoch-network
+    restart: unless-stopped
+
+networks:
+  aipoch-network:
+    driver: bridge
