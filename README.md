@@ -5,8 +5,8 @@
 <h1 align="center">Bioclaw</h1>
 
 <p align="center">
-  <strong>Open-Source Biomedical AI Research Assistant</strong><br>
-  OpenClaw × Opencode × Curated Bio Research Skills
+  <strong>Open-Source Bio-Research Integration Package</strong><br>
+  One-Click Setup for OpenClaw + Opencode + Docker Toolkit
 </p>
 
 <p align="center">
@@ -35,17 +35,17 @@
 
 ## Overview
 
-**Bioclaw** is an open-source scientific AI research assistant that enables researchers to perform complex data analysis through natural language conversations. It integrates three powerful components:
+**Bioclaw** is an open-source integration package that provides one-click installation and setup for a complete bio-research environment. It bundles three key components:
 
 - **OpenClaw**: Conversational AI gateway that connects to your favorite messaging platforms (Feishu, WhatsApp, Slack, Discord)
 - **Opencode**: Lightweight, self-hosted code execution environment
-- **Curated Bio Research Skills**: 150+ manually selected high-quality biomedical research skills covering bioinformatics, data analysis, literature search, and more
+- **Integrated Bio-Research Toolkit**: Pre-packaged curated bio-research skills for bioinformatics, data analysis, literature search, and more
 
 ### Why Bioclaw?
 
 | Feature | Benefit |
 |---------|---------|
-| 🔬 **Research-Ready** | 150+ manually curated bio-research skills |
+| 🔬 **Research-Ready** | Integrated bio-research toolkit ready to use |
 | 💬 **Conversational** | Interact via messaging apps you already use |
 | 🔒 **Self-Hosted** | Your data stays on your machine |
 | 🚀 **Extensible** | Easy to add custom skills |
@@ -101,8 +101,8 @@
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              Curated Bio Research Skills                         │
-│                      (150+ Skills)                               │
+│              Bio-Research Toolkit                                │
+│                   (Curated Skills)                               │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
                            ▼
@@ -139,7 +139,7 @@ bash setup.sh
 
 That's it! The `setup.sh` script automatically:
 - ✅ Installs OpenClaw and Opencode (if not present)
-- ✅ Includes 150+ manually curated bio-research skills
+- ✅ Includes curated bio-research toolkit
 - ✅ Builds and starts Docker services (RStudio + JupyterLab)
 - ✅ Configures OpenClaw with Bioclaw identity
 - ✅ Starts Opencode server on port 4096
@@ -224,9 +224,9 @@ OPENCODE_TIMEOUT=600
 
 ## Available Skills
 
-Bioclaw includes **150+ manually curated bio-research skills**, carefully selected for quality and practicality:
+Bioclaw includes a curated bio-research toolkit:
 
-| Category | Skills | Examples |
+| Category | Description | Examples |
 |----------|--------|----------|
 | 🔬 **Bioinformatics** | 25+ | Genomics, transcriptomics, proteomics, metabolomics |
 | 📊 **Data Analysis** | 30+ | Statistical analysis, visualization, machine learning |

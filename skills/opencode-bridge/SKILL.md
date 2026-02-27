@@ -1,6 +1,6 @@
 ---
 name: opencode-bridge
-description: Bridge skill that forwards messages to local Opencode server (port 4096) for execution using K-Dense Scientific Skills. Use when user wants to run scientific analysis, bioinformatics workflows, data processing, or any task requiring specialized scientific computing skills. Triggers: "use opencode", "opencode analysis", "analyze data", "run analysis", "bioinformatics", "data processing".
+description: Bridge skill that forwards messages to local Opencode server (port 4096) for execution. Use when user wants to run scientific analysis, bioinformatics workflows, data processing, or any task requiring specialized scientific computing skills. Triggers: "use opencode", "opencode analysis", "analyze data", "run analysis", "bioinformatics", "data processing".
 triggers:
   - "use opencode"
   - "opencode analysis"
@@ -16,7 +16,7 @@ triggers:
 
 # Opencode Bridge Skill
 
-Forwards OpenClaw messages to local Opencode service for execution using K-Dense Scientific Skills (140+ scientific computing skills).
+Forwards OpenClaw messages to local Opencode service for execution.
 
 ## When to Use This Skill
 

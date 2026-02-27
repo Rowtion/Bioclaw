@@ -5,8 +5,8 @@
 <h1 align="center">Bioclaw</h1>
 
 <p align="center">
-  <strong>开源科学 AI 研究助手</strong><br>
-  OpenClaw × Opencode × 精选生物科研技能
+  <strong>开源生物科研集成安装包</strong><br>
+  一键安装 OpenClaw + Opencode + Docker 工具包
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
   <a href="https://github.com/Rowtion/Bioclaw">
-    <img src="https://img.shields.io/badge/Skills-150+-green.svg" alt="Skills: 150+">
+    <img src="https://img.shields.io/badge/Toolkit-BioResearch-green.svg" alt="Toolkit: Bio-Research">
   </a>
   <a href="https://opencode.dev">
     <img src="https://img.shields.io/badge/Powered%20by-Opencode-orange.svg" alt="Powered by Opencode">
@@ -41,17 +41,17 @@
 
 ## 概述
 
-**Bioclaw** 是一个开源的科学 AI 研究助手，让研究人员能够通过自然语言对话执行复杂的数据分析。它集成了三个强大的组件：
+**Bioclaw** 是一个开源集成安装包，提供一键安装和配置完整的生物科研环境。它整合了三个核心组件：
 
 - **OpenClaw**: 对话式 AI 网关，连接到你常用的消息平台（飞书、WhatsApp、Slack、Discord）
 - **Opencode**: 轻量级、自托管的代码执行环境
-- **精选生物科研技能库**: 经人工筛选的150+高质量生物科研技能，涵盖生物信息学、数据分析、文献检索等
+- **生物科研工具包**: 集成经人工筛选的生物科研技能，涵盖生物信息学、数据分析、文献检索等
 
 ### 为什么选择 Bioclaw？
 
 | 特性 | 优势 |
 |---------|---------|
-| 🔬 **研究就绪** | 150+ 人工筛选的高质量生物科研技能 |
+| 🔬 **研究就绪** | 集成生物科研工具包，开箱即用 |
 | 💬 **对话式交互** | 通过你已在使用的消息应用进行交互 |
 | 🔒 **自托管** | 你的数据保留在自己的机器上 |
 | 🚀 **可扩展** | 轻松添加自定义技能 |
@@ -107,8 +107,8 @@
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              精选生物科研技能库                                  │
-│                      (150+ 技能)                                │
+│              生物科研工具包                                      │
+│                   (精选技能库)                                   │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
                            ▼
@@ -145,7 +145,7 @@ bash setup.sh
 
 就这些！`setup.sh` 脚本会自动：
 - ✅ 安装 OpenClaw 和 Opencode（如果尚未安装）
-- ✅ 集成 150+ 经人工筛选的生物科研技能
+- ✅ 集成经人工筛选的生物科研技能库
 - ✅ 构建并启动 Docker 服务（RStudio + JupyterLab）
 - ✅ 配置 OpenClaw 使用 Bioclaw 身份
 - ✅ 在 4096 端口启动 Opencode 服务器
@@ -230,9 +230,9 @@ OPENCODE_TIMEOUT=600
 
 ## 可用技能
 
-Bioclaw 包含 **150+ 经人工筛选的高质量生物科研技能** ：
+Bioclaw 集成生物科研技能库：
 
-| 类别 | 技能数 | 示例 |
+| 类别 | 描述 | 示例 |
 |----------|--------|----------|
 | 🔬 **生物信息学** | 25+ | 基因组学、转录组学、蛋白质组学、代谢组学 |
 | 📊 **数据分析** | 30+ | 统计分析、可视化、机器学习 |
