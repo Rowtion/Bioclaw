@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://via.placeholder.com/200x200?text=AIpoch-claw" alt="AIpoch-claw Logo" width="200">
+  <img src="assets/logo.png" alt="AIpoch-claw Logo" width="200">
 </p>
 
 <h1 align="center">AIpoch-claw</h1>
