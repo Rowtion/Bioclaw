@@ -1,10 +1,10 @@
-# AIpoch-claw Project Context
+# Bioclaw Project Context
 
 This file provides context for AI agents working on this project.
 
 ## Project Overview
 
-AIpoch-claw is a scientific AI research assistant that combines:
+Bioclaw is a scientific AI research assistant that combines:
 - **OpenClaw**: Conversational AI gateway for messaging platforms
 - **Opencode**: Code execution environment (alternative to Claude Code)
 - **K-Dense Scientific Skills**: 140+ curated scientific computing skills

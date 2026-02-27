@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.png" alt="AIpoch-claw Logo" width="200">
+  <img src="assets/logo.png" alt="Bioclaw Logo" width="200">
 </p>
 
-<h1 align="center">AIpoch-claw</h1>
+<h1 align="center">Bioclaw</h1>
 
 <p align="center">
   <strong>Open-Source Biomedical AI Research Assistant</strong><br>
@@ -35,13 +35,13 @@
 
 ## Overview
 
-**AIpoch-claw** is an open-source scientific AI research assistant that enables researchers to perform complex data analysis through natural language conversations. It integrates three powerful components:
+**Bioclaw** is an open-source scientific AI research assistant that enables researchers to perform complex data analysis through natural language conversations. It integrates three powerful components:
 
 - **OpenClaw**: Conversational AI gateway that connects to your favorite messaging platforms (Feishu, WhatsApp, Slack, Discord)
 - **Opencode**: Lightweight, self-hosted code execution environment
 - **K-Dense Scientific Skills**: A curated collection of scientific computing skills covering bioinformatics, data analysis, literature search, and more
 
-### Why AIpoch-claw?
+### Why Bioclaw?
 
 | Feature | Benefit |
 |---------|---------|
@@ -132,8 +132,8 @@
 
 ```bash
 # Clone and install everything
-git clone --recurse-submodules https://github.com/Rowtion/AIpoch-claw.git
-cd AIpoch-claw
+git clone --recurse-submodules https://github.com/Rowtion/Bioclaw.git
+cd Bioclaw
 bash setup.sh
 ```
 
@@ -141,7 +141,7 @@ That's it! The `setup.sh` script automatically:
 - ✅ Installs OpenClaw and Opencode (if not present)
 - ✅ Pulls K-Dense scientific skills (140+)
 - ✅ Builds and starts Docker services (RStudio + JupyterLab)
-- ✅ Configures OpenClaw with AIpoch-claw identity
+- ✅ Configures OpenClaw with Bioclaw identity
 - ✅ Starts Opencode server on port 4096
 
 ### Configure API Access
@@ -183,8 +183,8 @@ Help me visualize this data with matplotlib
 ```
 
 Results are saved to `./outputs/` and can be viewed in:
-- **RStudio Server**: http://localhost:8787 (password: `aipoch`)
-- **JupyterLab**: http://localhost:8888 (token: `aipoch`)
+- **RStudio Server**: http://localhost:8787 (password: `bioclaw`)
+- **JupyterLab**: http://localhost:8888 (token: `bioclaw`)
 
 ## Configuration
 
@@ -288,7 +288,7 @@ docker-compose ps
 ## Project Structure
 
 ```
-AIpoch-claw/
+Bioclaw/
 ├── docker/
 │   ├── Dockerfile              # R + Python analysis environment
 │   └── entrypoint.sh           # Service startup script
@@ -342,10 +342,10 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Links
 
-- 🏠 **Repository**: https://github.com/Rowtion/AIpoch-claw
+- 🏠 **Repository**: https://github.com/Rowtion/Bioclaw
 - 📖 **Documentation**: See `docs/` directory
-- 🐛 **Issues**: https://github.com/Rowtion/AIpoch-claw/issues
-- 💬 **Discussions**: https://github.com/Rowtion/AIpoch-claw/discussions
+- 🐛 **Issues**: https://github.com/Rowtion/Bioclaw/issues
+- 💬 **Discussions**: https://github.com/Rowtion/Bioclaw/discussions
 
 ---
 

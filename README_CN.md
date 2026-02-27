@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.png" alt="AIpoch-claw Logo" width="200">
+  <img src="assets/logo.png" alt="Bioclaw Logo" width="200">
 </p>
 
-<h1 align="center">AIpoch-claw</h1>
+<h1 align="center">Bioclaw</h1>
 
 <p align="center">
   <strong>开源科学 AI 研究助手</strong><br>
@@ -10,10 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Rowtion/AIpoch-claw/blob/main/LICENSE">
+  <a href="https://github.com/Rowtion/Bioclaw/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
-  <a href="https://github.com/Rowtion/AIpoch-claw">
+  <a href="https://github.com/Rowtion/Bioclaw">
     <img src="https://img.shields.io/badge/Skills-140+-green.svg" alt="Skills: 140+">
   </a>
   <a href="https://opencode.dev">
@@ -41,13 +41,13 @@
 
 ## 概述
 
-**AIpoch-claw** 是一个开源的科学 AI 研究助手，让研究人员能够通过自然语言对话执行复杂的数据分析。它集成了三个强大的组件：
+**Bioclaw** 是一个开源的科学 AI 研究助手，让研究人员能够通过自然语言对话执行复杂的数据分析。它集成了三个强大的组件：
 
 - **OpenClaw**: 对话式 AI 网关，连接到你常用的消息平台（飞书、WhatsApp、Slack、Discord）
 - **Opencode**: 轻量级、自托管的代码执行环境
 - **K-Dense 科学技能库**: 精心策划的科学计算技能集合，涵盖生物信息学、数据分析、文献检索等
 
-### 为什么选择 AIpoch-claw？
+### 为什么选择 Bioclaw？
 
 | 特性 | 优势 |
 |---------|---------|
@@ -138,8 +138,8 @@
 
 ```bash
 # 克隆并安装所有内容
-git clone --recurse-submodules https://github.com/Rowtion/AIpoch-claw.git
-cd AIpoch-claw
+git clone --recurse-submodules https://github.com/Rowtion/Bioclaw.git
+cd Bioclaw
 bash setup.sh
 ```
 
@@ -147,7 +147,7 @@ bash setup.sh
 - ✅ 安装 OpenClaw 和 Opencode（如果尚未安装）
 - ✅ 拉取 K-Dense 科学技能库（140+）
 - ✅ 构建并启动 Docker 服务（RStudio + JupyterLab）
-- ✅ 配置 OpenClaw 使用 AIpoch-claw 身份
+- ✅ 配置 OpenClaw 使用 Bioclaw 身份
 - ✅ 在 4096 端口启动 Opencode 服务器
 
 ### 配置 API 访问
@@ -189,8 +189,8 @@ openclaw gateway restart
 ```
 
 结果将保存到 `./outputs/` 目录，可以在以下位置查看：
-- **RStudio 服务器**: http://localhost:8787（密码：`aipoch`）
-- **JupyterLab**: http://localhost:8888（token：`aipoch`）
+- **RStudio 服务器**: http://localhost:8787（密码：`bioclaw`）
+- **JupyterLab**: http://localhost:8888（token：`bioclaw`）
 
 ## 配置
 
@@ -294,7 +294,7 @@ docker-compose ps
 ## 项目结构
 
 ```
-AIpoch-claw/
+Bioclaw/
 ├── docker/
 │   ├── Dockerfile              # R + Python 分析环境
 │   └── entrypoint.sh           # 服务启动脚本
@@ -348,10 +348,10 @@ AIpoch-claw/
 
 ## 链接
 
-- 🏠 **仓库**: https://github.com/Rowtion/AIpoch-claw
+- 🏠 **仓库**: https://github.com/Rowtion/Bioclaw
 - 📖 **文档**: 参见 `docs/` 目录
-- 🐛 **问题**: https://github.com/Rowtion/AIpoch-claw/issues
-- 💬 **讨论**: https://github.com/Rowtion/AIpoch-claw/discussions
+- 🐛 **问题**: https://github.com/Rowtion/Bioclaw/issues
+- 💬 **讨论**: https://github.com/Rowtion/Bioclaw/discussions
 
 ---
 

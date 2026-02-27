@@ -6,7 +6,7 @@ services:
     build:
       context: ./docker
       dockerfile: Dockerfile
-    container_name: aipoch-analysis
+    container_name: bioclaw-analysis
     ports:
       - "8787:8787"  # RStudio Server
       - "8888:8888"  # JupyterLab
@@ -19,12 +19,12 @@ services:
       - ROOT=TRUE
     restart: unless-stopped
     networks:
-      - aipoch-network
+      - bioclaw-network
 
   # Opencode 服务 (可选 - 也可本地运行)
   # opencode:
   #   image: node:22-alpine
-  #   container_name: aipoch-opencode
+  #   container_name: bioclaw-opencode
   #   ports:
   #     - "4096:4096"
   #   volumes:
@@ -35,8 +35,8 @@ services:
   #   environment:
   #     - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
   #   networks:
-  #     - aipoch-network
+  #     - bioclaw-network
 
 networks:
-  aipoch-network:
+  bioclaw-network:
     driver: bridge

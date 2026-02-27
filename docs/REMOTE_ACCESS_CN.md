@@ -1,6 +1,6 @@
 # 远程访问指南
 
-启用 AIpoch-claw 服务（RStudio、JupyterLab、Opencode）的远程访问，从任何地方都能使用。
+启用 Bioclaw 服务（RStudio、JupyterLab、Opencode）的远程访问，从任何地方都能使用。
 
 ## 快速开始
 
@@ -187,5 +187,5 @@ curl http://your-server-ip:8787
 ## 支持
 
 如需远程访问配置帮助：
-- GitHub Issues：https://github.com/Rowtion/AIpoch-claw/issues
+- GitHub Issues：https://github.com/Rowtion/Bioclaw/issues
 - 文档：参见主 README.md

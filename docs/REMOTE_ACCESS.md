@@ -1,6 +1,6 @@
 # Remote Access Guide
 
-Enable remote access to AIpoch-claw services (RStudio, JupyterLab, Opencode) from anywhere.
+Enable remote access to Bioclaw services (RStudio, JupyterLab, Opencode) from anywhere.
 
 ## Quick Start
 
@@ -187,5 +187,5 @@ Before exposing to internet:
 ## Support
 
 For help with remote access configuration:
-- GitHub Issues: https://github.com/Rowtion/AIpoch-claw/issues
+- GitHub Issues: https://github.com/Rowtion/Bioclaw/issues
 - Documentation: See main README.md

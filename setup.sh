@@ -1,5 +1,5 @@
 #!/bin/bash
-# AIpoch-claw Setup Script v2.1
+# Bioclaw Setup Script v2.1
 # One-click installation: OpenClaw, Opencode, RStudio, Jupyter, and K-Dense skills
 
 set -euo pipefail
@@ -253,7 +253,7 @@ check_in_project_root() {
     print_status "Validating project location..."
     
     if [ ! -f "docker-compose.yml" ]; then
-        print_error "Please run this script from the AIpoch-claw project root directory"
+        print_error "Please run this script from the Bioclaw project root directory"
         echo "   docker-compose.yml not found"
         exit 1
     fi
@@ -618,10 +618,10 @@ create_env_file() {
     
     # Generate random tokens for security
     local jupyter_token
-    jupyter_token=$(openssl rand -hex 16 2>/dev/null || echo "aipoch-$(date +%s)")
+    jupyter_token=$(openssl rand -hex 16 2>/dev/null || echo "bioclaw-$(date +%s)")
     
     cat > .env << EOF
-# AIpoch-claw Environment Configuration
+# Bioclaw Environment Configuration
 # Generated on $(date)
 
 # =============================================================================
@@ -637,7 +637,7 @@ OPENCODE_TIMEOUT=300
 # Docker Services Configuration
 # =============================================================================
 JUPYTER_TOKEN=$jupyter_token
-RSTUDIO_PASSWORD=aipoch
+RSTUDIO_PASSWORD=bioclaw
 
 # =============================================================================
 # Security Settings (Change in production!)
@@ -654,7 +654,7 @@ build_docker_images() {
     print_warning "This may take 10-30 minutes depending on network speed and hardware"
     
     # Check if images already exist
-    if docker images | grep -q "aipoch-claw"; then
+    if docker images | grep -q "bioclaw"; then
         read -p "Existing images detected, rebuild? (y/N): " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -688,7 +688,7 @@ start_docker_services() {
     # Start services
     if $DOCKER_COMPOSE up -d 2>&1 | tee -a "$LOG_FILE"; then
         print_success "Service startup command sent"
-        CREATED_CONTAINERS+=("aipoch-analysis")
+        CREATED_CONTAINERS+=("bioclaw-analysis")
     else
         print_error "Service startup failed"
         exit 1
@@ -710,7 +710,7 @@ start_docker_services() {
         fi
         
         # Check if container is still running
-        if ! docker ps | grep -q "aipoch-analysis"; then
+        if ! docker ps | grep -q "bioclaw-analysis"; then
             echo
             print_error "Container stopped unexpectedly, view logs:"
             echo "   $DOCKER_COMPOSE logs"
@@ -728,24 +728,24 @@ start_docker_services() {
 }
 
 run_aipoch_init() {
-    print_header "Running AIpoch-claw Initialization"
+    print_header "Running Bioclaw Initialization"
     
     if [ ! -f "aipoch-init.sh" ]; then
         print_error "aipoch-init.sh script not found"
         return 1
     fi
     
-    print_status "Injecting AIpoch-claw configuration into OpenClaw..."
+    print_status "Injecting Bioclaw configuration into OpenClaw..."
     
     if bash aipoch-init.sh 2>&1 | tee -a "$LOG_FILE"; then
-        print_success "AIpoch-claw configuration injection completed"
+        print_success "Bioclaw configuration injection completed"
         
         echo ""
-        echo "   💡 OpenClaw configured for AIpoch-claw mode"
+        echo "   💡 OpenClaw configured for Bioclaw mode"
         echo "   Takes effect after restarting gateway: openclaw gateway restart"
         echo ""
     else
-        print_warning "AIpoch-claw initialization may not be complete"
+        print_warning "Bioclaw initialization may not be complete"
         echo "   Run manually later: bash aipoch-init.sh"
     fi
 }
@@ -778,7 +778,7 @@ health_check() {
     fi
     
     # Check Docker containers
-    if docker ps | grep -q "aipoch-analysis"; then
+    if docker ps | grep -q "bioclaw-analysis"; then
         print_success "Docker containers running normally"
     else
         print_error "Docker containers not running"
@@ -808,7 +808,7 @@ show_banner() {
 ╚═╝  ╚═╝╚═╝╚═╝      ╚═════╝  ╚═════╝╚═╝  ╚═╝
 EOF
     echo -e "${NC}"
-    echo -e "${CYAN}AIpoch-claw One-Click Installation Script v${SCRIPT_VERSION}${NC}"
+    echo -e "${CYAN}Bioclaw One-Click Installation Script v${SCRIPT_VERSION}${NC}"
     echo -e "${BLUE}Log file: $LOG_FILE${NC}"
     echo ""
     echo "This script will install:"
@@ -929,7 +929,7 @@ main() {
         esac
     done
     
-    log "Starting AIpoch-claw setup v${SCRIPT_VERSION}"
+    log "Starting Bioclaw setup v${SCRIPT_VERSION}"
     log "Arguments: offline=${offline_mode}, skip_build=${skip_build}, auto_install=${auto_install}"
     
     # Pre-flight checks
@@ -960,7 +960,7 @@ main() {
     
     start_docker_services
     
-    # Initialize AIpoch-claw
+    # Initialize Bioclaw
     if [ "$auto_install" = true ]; then
         run_aipoch_init
     fi
