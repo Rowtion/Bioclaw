@@ -1,0 +1,3 @@
+# This directory is for analysis outputs
+# Results from Opencode executions are saved here
+# Files in this directory are mounted to Docker containers

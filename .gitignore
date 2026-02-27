@@ -1,0 +1,50 @@
+# AIpoch-claw
+# OpenClaw + Opencode + AIPOCH Medical Research Skills
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Data and outputs (user data)
+data/*
+!data/.gitkeep
+outputs/*
+!outputs/.gitkeep
+
+# AIPOCH Skills (downloaded during setup)
+scientific-skills/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Docker
+.docker/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

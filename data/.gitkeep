@@ -1,0 +1,3 @@
+# This directory is for user data files
+# Add your research data here
+# Files in this directory are mounted to Docker containers
