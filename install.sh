@@ -70,7 +70,7 @@ print_success "代码下载完成"
 print_status "第 3/5 步：创建快捷命令..."
 mkdir -p "$HOME/.local/bin"
 
-cat > "$HOME/.local/bin/bioclaw" <> 'EOF'
+cat > "$HOME/.local/bin/bioclaw" << 'EOF'
 #!/bin/bash
 cd "$HOME/.bioclaw"
 case "$1" in
