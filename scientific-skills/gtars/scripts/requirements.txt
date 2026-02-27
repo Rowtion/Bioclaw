@@ -1,0 +1,6 @@
+# gtars 依赖
+# 安装命令: pip install gtars
+# CLI 工具安装 (需要 Rust): cargo install gtars-cli
+
+gtars>=0.1.0
+numpy>=1.20.0

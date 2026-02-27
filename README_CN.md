@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>开源科学 AI 研究助手</strong><br>
-  OpenClaw × Opencode × K-Dense 科学技能库
+  OpenClaw × Opencode × 精选生物科研技能
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
     <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
   </a>
   <a href="https://github.com/Rowtion/Bioclaw">
-    <img src="https://img.shields.io/badge/Skills-140+-green.svg" alt="Skills: 140+">
+    <img src="https://img.shields.io/badge/Skills-150+-green.svg" alt="Skills: 150+">
   </a>
   <a href="https://opencode.dev">
     <img src="https://img.shields.io/badge/Powered%20by-Opencode-orange.svg" alt="Powered by Opencode">
@@ -45,13 +45,13 @@
 
 - **OpenClaw**: 对话式 AI 网关，连接到你常用的消息平台（飞书、WhatsApp、Slack、Discord）
 - **Opencode**: 轻量级、自托管的代码执行环境
-- **K-Dense 科学技能库**: 精心策划的科学计算技能集合，涵盖生物信息学、数据分析、文献检索等
+- **精选生物科研技能库**: 经人工筛选的150+高质量生物科研技能，涵盖生物信息学、数据分析、文献检索等
 
 ### 为什么选择 Bioclaw？
 
 | 特性 | 优势 |
 |---------|---------|
-| 🔬 **研究就绪** | 140+ 预构建技能，适用于常见科学任务 |
+| 🔬 **研究就绪** | 150+ 人工筛选的高质量生物科研技能 |
 | 💬 **对话式交互** | 通过你已在使用的消息应用进行交互 |
 | 🔒 **自托管** | 你的数据保留在自己的机器上 |
 | 🚀 **可扩展** | 轻松添加自定义技能 |
@@ -107,8 +107,8 @@
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              K-Dense 科学技能库                                 │
-│                      (140+ 技能)                                │
+│              精选生物科研技能库                                  │
+│                      (150+ 技能)                                │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
                            ▼
@@ -145,7 +145,7 @@ bash setup.sh
 
 就这些！`setup.sh` 脚本会自动：
 - ✅ 安装 OpenClaw 和 Opencode（如果尚未安装）
-- ✅ 拉取 K-Dense 科学技能库（140+）
+- ✅ 集成 150+ 经人工筛选的生物科研技能
 - ✅ 构建并启动 Docker 服务（RStudio + JupyterLab）
 - ✅ 配置 OpenClaw 使用 Bioclaw 身份
 - ✅ 在 4096 端口启动 Opencode 服务器
@@ -230,7 +230,7 @@ OPENCODE_TIMEOUT=600
 
 ## 可用技能
 
-K-Dense 科学技能库包含 140+ 按领域组织的技能：
+Bioclaw 包含 **150+ 经人工筛选的高质量生物科研技能** ：
 
 | 类别 | 技能数 | 示例 |
 |----------|--------|----------|
@@ -243,7 +243,6 @@ K-Dense 科学技能库包含 140+ 按领域组织的技能：
 | 📝 **出版** | 10+ | 图表创建、手稿格式化、同行评审 |
 | 🔧 **工具** | 10+ | 文件转换、数据清理、API 工具 |
 
-浏览所有技能：https://github.com/K-Dense-AI/claude-scientific-skills
 
 ## 故障排除
 
@@ -343,8 +342,7 @@ Bioclaw/
 
 - [OpenClaw](https://github.com/openclaw/openclaw) - 对话式 AI 网关
 - [Opencode](https://opencode.dev) - 代码执行环境
-- [K-Dense](https://github.com/K-Dense-AI) - 科学计算技能
-- [K-Dense 科学技能库](https://github.com/K-Dense-AI/claude-scientific-skills) - 技能库
+- [精选技能 科学技能库](https://github.com/精选技能-AI/claude-scientific-skills) - 技能库
 
 ## 链接
 

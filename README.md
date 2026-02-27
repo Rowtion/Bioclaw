@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Open-Source Biomedical AI Research Assistant</strong><br>
-  OpenClaw × Opencode × K-Dense Scientific Skills
+  OpenClaw × Opencode × Curated Bio Research Skills
 </p>
 
 <p align="center">
@@ -39,13 +39,13 @@
 
 - **OpenClaw**: Conversational AI gateway that connects to your favorite messaging platforms (Feishu, WhatsApp, Slack, Discord)
 - **Opencode**: Lightweight, self-hosted code execution environment
-- **K-Dense Scientific Skills**: A curated collection of scientific computing skills covering bioinformatics, data analysis, literature search, and more
+- **Curated Bio Research Skills**: 150+ manually selected high-quality biomedical research skills covering bioinformatics, data analysis, literature search, and more
 
 ### Why Bioclaw?
 
 | Feature | Benefit |
 |---------|---------|
-| 🔬 **Research-Ready** | 140+ pre-built skills for common scientific tasks |
+| 🔬 **Research-Ready** | 150+ manually curated bio-research skills |
 | 💬 **Conversational** | Interact via messaging apps you already use |
 | 🔒 **Self-Hosted** | Your data stays on your machine |
 | 🚀 **Extensible** | Easy to add custom skills |
@@ -101,8 +101,8 @@
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              K-Dense Scientific Skills                           │
-│                      (140+ Skills)                               │
+│              Curated Bio Research Skills                         │
+│                      (150+ Skills)                               │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
                            ▼
@@ -139,7 +139,7 @@ bash setup.sh
 
 That's it! The `setup.sh` script automatically:
 - ✅ Installs OpenClaw and Opencode (if not present)
-- ✅ Pulls K-Dense scientific skills (140+)
+- ✅ Includes 150+ manually curated bio-research skills
 - ✅ Builds and starts Docker services (RStudio + JupyterLab)
 - ✅ Configures OpenClaw with Bioclaw identity
 - ✅ Starts Opencode server on port 4096
@@ -224,7 +224,7 @@ OPENCODE_TIMEOUT=600
 
 ## Available Skills
 
-K-Dense Scientific Skills includes 140+ skills organized by domain:
+Bioclaw includes **150+ manually curated bio-research skills**, carefully selected for quality and practicality:
 
 | Category | Skills | Examples |
 |----------|--------|----------|
@@ -237,7 +237,7 @@ K-Dense Scientific Skills includes 140+ skills organized by domain:
 | 📝 **Publishing** | 10+ | Figure creation, manuscript formatting, peer review |
 | 🔧 **Utilities** | 10+ | File conversion, data cleaning, API tools |
 
-Browse all skills at: https://github.com/K-Dense-AI/claude-scientific-skills
+
 
 ## Troubleshooting
 
@@ -337,8 +337,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 - [OpenClaw](https://github.com/openclaw/openclaw) - Conversational AI gateway
 - [Opencode](https://opencode.dev) - Code execution environment
-- [K-Dense](https://github.com/K-Dense-AI) - Scientific computing skills
-- [K-Dense Scientific Skills](https://github.com/K-Dense-AI/claude-scientific-skills) - Skill library
+
 
 ## Links
 

@@ -1,0 +1,2 @@
+idc-index>=0.11.7
+pandas

@@ -1,0 +1,11 @@
+# AnnData Scripts Requirements
+# Single-cell genomics data analysis
+
+anndata>=0.10.0
+scanpy>=1.9.0
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+h5py>=3.8.0
+matplotlib>=3.7.0
+seaborn>=0.12.0

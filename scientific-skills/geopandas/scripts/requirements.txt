@@ -1,0 +1,9 @@
+geopandas>=0.14.0
+shapely>=2.0.0
+fiona>=1.9.0
+pyproj>=3.6.0
+matplotlib>=3.7.0
+folium>=0.14.0
+contextily>=1.4.0
+mapclassify>=2.6.0
+pyarrow>=14.0.0

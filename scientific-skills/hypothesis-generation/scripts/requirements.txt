@@ -1,0 +1,8 @@
+# Hypothesis Generation 依赖
+# 此技能主要使用系统提示和框架，无特殊依赖
+
+pyyaml>=6.0
+numpy>=1.20.0
+pandas>=1.5.0
+requests>=2.28.0  # 用于文献检索
+beautifulsoup4>=4.11.0  # 用于网页解析
