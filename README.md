@@ -1,19 +1,28 @@
-# Bioclaw
+<p align="center">
+  <img src="assets/logo.svg" alt="Bioclaw Logo" width="200">
+</p>
 
-**开源生物科研集成安装包**
+<h1 align="center">Bioclaw</h1>
 
-一键搭建完整的生物科研 AI 环境：OpenClaw + Opencode + Docker 工具包
+<p align="center">
+  <strong>Open-Source Bio-Research Integration Package</strong><br>
+  One-click setup for OpenClaw + Opencode + Docker Toolkit
+</p>
+
+<p align="center">
+  <a href="README_CN.md">中文</a> | <strong>English</strong>
+</p>
 
 ---
 
-## 两步安装
+## Two-Step Installation
 
-### 第 1 步：安装 Docker
+### Step 1: Install Docker
 
 **macOS:**
-1. 访问 https://docs.docker.com/desktop/install/mac-install/
-2. 下载并安装 Docker Desktop
-3. 打开 Docker Desktop 应用，等待显示 "Docker Desktop is running"
+1. Visit https://docs.docker.com/desktop/install/mac-install/
+2. Download and install Docker Desktop
+3. Open Docker Desktop and wait for "Docker Desktop is running"
 
 **Ubuntu:**
 ```bash
@@ -21,78 +30,99 @@ sudo apt-get update
 sudo apt-get install -y docker.io
 sudo systemctl start docker
 sudo usermod -aG docker $USER
-# 注销并重新登录
+# Log out and log back in
 ```
 
-### 第 2 步：安装 Bioclaw
+### Step 2: Install Bioclaw
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Rowtion/Bioclaw/main/install.sh | bash
 ```
 
-**安装过程约 5-10 分钟**，会自动：
-- 下载 Bioclaw 代码
-- 构建 Docker 镜像
-- 启动所有服务
-- 创建 `bioclaw` 命令
+**Installation takes about 5-10 minutes** and will automatically:
+- Download Bioclaw code
+- Build Docker images
+- Start all services
+- Create the `bioclaw` command
 
 ---
 
-## 使用
+## Usage
 
-### 启动
+### Start
 ```bash
 bioclaw start
 ```
 
-### 停止
+### Stop
 ```bash
 bioclaw stop
 ```
 
-### 查看状态
+### Check Status
 ```bash
 bioclaw status
 ```
 
-### 访问科研环境
+### Access Research Environment
 
-- **RStudio**（数据分析）：http://localhost:8787
-- **JupyterLab**（Python 编程）：http://localhost:8888
+- **RStudio** (data analysis): http://localhost:8787
+- **JupyterLab** (Python coding): http://localhost:8888
 
-**默认密码：** `bioclaw`
-
----
-
-## 这是什么？
-
-Bioclaw 是一个**集成安装包**，帮你快速搭建：
-
-- **OpenClaw** - AI 对话网关（连接飞书/Slack/WhatsApp）
-- **Opencode** - 代码执行环境
-- **Docker 工具包** - 预装 RStudio + JupyterLab + 生物科研工具
-
-**适合人群：**
-- 想快速搭建生物科研环境的用户
-- 不想折腾配置的小白用户
-- 需要标准化分析环境的团队
+**Default password:** `bioclaw`
 
 ---
 
-## 项目结构
+## What is This?
+
+Bioclaw is an **integration package** that helps you quickly set up:
+
+- **OpenClaw** - AI conversation gateway (connects to Feishu/Slack/WhatsApp)
+- **Opencode** - Code execution environment
+- **Docker Toolkit** - Pre-installed RStudio + JupyterLab + bio-research tools
+
+**Perfect for:**
+- Users who want to quickly set up bio-research environment
+- Beginners who don't want to tinker with configurations
+- Teams who need standardized analysis environments
+
+---
+
+## Project Structure
 
 ```
 ~/.bioclaw/
-├── docker-compose.yml     # Docker 配置
-├── setup.sh               # 安装脚本
-├── data/                  # 数据目录
-├── outputs/               # 分析结果
-└── scientific-skills/     # 生物科研技能库
+├── docker-compose.yml     # Docker configuration
+├── setup.sh               # Installation script
+├── data/                  # Data directory
+├── outputs/               # Analysis results
+└── scientific-skills/     # Bio-research skill library
 ```
 
 ---
 
-## 需要帮助？
+## GUI Interface (Optional)
 
-- GitHub: https://github.com/Rowtion/Bioclaw
-- Issues: https://github.com/Rowtion/Bioclaw/issues
+For users who prefer graphical interface:
+
+```bash
+# Launch GUI
+python3 ~/.bioclaw/bioclaw-gui.py
+
+# Or on macOS, double-click Bioclaw.app
+```
+
+---
+
+## Need Help?
+
+- **Installation Check:** `bash check.sh`
+- **FAQ:** See [FAQ.md](FAQ.md)
+- **GitHub:** https://github.com/Rowtion/Bioclaw
+- **Issues:** https://github.com/Rowtion/Bioclaw/issues
+
+---
+
+<p align="center">
+  Made with ❤️ for researchers worldwide
+</p>

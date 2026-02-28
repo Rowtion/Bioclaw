@@ -9,6 +9,10 @@
   一键搭建完整的生物科研 AI 环境
 </p>
 
+<p align="center">
+  <strong>中文</strong> | <a href="README.md">English</a>
+</p>
+
 ---
 
 ## 两步安装
@@ -84,20 +88,28 @@ Bioclaw 是一个**集成安装包**，帮你快速搭建：
 
 ---
 
-## 项目结构
+## 图形界面（可选）
 
-```
-~/.bioclaw/
-├── docker-compose.yml     # Docker 配置
-├── setup.sh               # 安装脚本
-├── data/                  # 数据目录
-├── outputs/               # 分析结果
-└── scientific-skills/     # 生物科研技能库
+对于喜欢图形界面的用户：
+
+```bash
+# 启动 GUI
+python3 ~/.bioclaw/bioclaw-gui.py
+
+# 或在 macOS 上双击 Bioclaw.app
 ```
 
 ---
 
 ## 需要帮助？
 
-- GitHub: https://github.com/Rowtion/Bioclaw
-- Issues: https://github.com/Rowtion/Bioclaw/issues
+- **安装检查：** `bash check.sh`
+- **常见问题：** 查看 [FAQ.md](FAQ.md)
+- **GitHub：** https://github.com/Rowtion/Bioclaw
+- **Issues：** https://github.com/Rowtion/Bioclaw/issues
+
+---
+
+<p align="center">
+  Made with ❤️ for researchers worldwide
+</p>
