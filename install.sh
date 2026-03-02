@@ -199,7 +199,20 @@ if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# 添加 OpenClaw CLI 别名
+if ! grep -q "alias bioclaw-openclaw" "$HOME/.zshrc" 2>/dev/null; then
+    echo '' >> "$HOME/.zshrc"
+    echo '# Bioclaw OpenClaw CLI 别名' >> "$HOME/.zshrc"
+    echo 'alias bioclaw-openclaw="docker exec bioclaw-openclaw node /app/openclaw.mjs"' >> "$HOME/.zshrc"
+fi
+if ! grep -q "alias bioclaw-openclaw" "$HOME/.bashrc" 2>/dev/null; then
+    echo '' >> "$HOME/.bashrc"
+    echo '# Bioclaw OpenClaw CLI 别名' >> "$HOME/.bashrc"
+    echo 'alias bioclaw-openclaw="docker exec bioclaw-openclaw node /app/openclaw.mjs"' >> "$HOME/.bashrc"
+fi
+
 print_success "快捷命令创建完成"
+print_success "OpenClaw CLI 别名已添加 (bioclaw-openclaw)"
 
 # 第 5 步：构建镜像（带进度）
 print_status "第 5/6 步：构建 Docker 镜像..."

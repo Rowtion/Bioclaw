@@ -53,11 +53,33 @@ bioclaw logs
 
 **默认密码：** `bioclaw`
 
+## 配置飞书机器人（可选）
+
+如果想在飞书里使用 Bioclaw：
+
+```bash
+# 1. 复制配置文件
+cp openclaw-config/openclaw.json.example openclaw-config/openclaw.json
+
+# 2. 编辑配置文件，填入飞书 App ID/Secret
+nano openclaw-config/openclaw.json
+
+# 3. 配置 Gateway
+bioclaw-openclaw config set gateway.mode local
+bioclaw-openclaw channels login feishu
+
+# 4. 重启服务
+bioclaw restart
+```
+
+然后就可以在飞书里发送消息："帮我分析数据"
+
 ## 下一步
 
-1. **打开 RStudio** → 开始分析你的数据
-2. **配置 AI 模型** → 运行 `~/.opencode/bin/opencode auth login`
-3. **在飞书中对话** → 发送 "帮我分析这个数据"
+1. **打开 RStudio** → 开始分析你的数据 (http://localhost:8787)
+2. **使用 JupyterLab** → Python 编程 (http://localhost:8888)
+3. **直接在浏览器对话** → AI 助手 (http://localhost:4096)
+4. **在飞书里对话** → 配置后发送 "帮我分析这个数据"
 
 ## 常见问题
 

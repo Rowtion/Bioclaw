@@ -289,7 +289,36 @@ cp my_data.csv ~/.bioclaw/data/
    bioclaw start
    ```
 
-4. **Add bot to Feishu group and chat:**
+4. **Configure OpenClaw Gateway (使用 CLI):**
+   
+   **方法 A: 使用别名命令（推荐）**
+   ```bash
+   # 配置 Gateway 模式
+   bioclaw-openclaw config set gateway.mode local
+   
+   # 登录飞书通道
+   bioclaw-openclaw channels login feishu
+   
+   # 检查状态
+   bioclaw-openclaw doctor
+   
+   # 重启 Gateway 生效
+   bioclaw restart
+   ```
+   
+   **方法 B: 使用 docker exec**
+   ```bash
+   docker exec bioclaw-openclaw node /app/openclaw.mjs config set gateway.mode local
+   docker exec -it bioclaw-openclaw node /app/openclaw.mjs channels login feishu
+   docker exec bioclaw-openclaw node /app/openclaw.mjs doctor
+   ```
+   
+   **方法 C: Web UI 配置**
+   - 打开 http://localhost:18790
+   - 点击 "Channels" → 添加飞书
+   - 填入 App ID / App Secret / Encrypt Key / Verification Token
+
+5. **Add bot to Feishu group and chat:**
    ```
    "帮我用DESeq2做差异表达分析"
    "Plot a heatmap of top 50 genes"
@@ -299,6 +328,37 @@ cp my_data.csv ~/.bioclaw/data/
 #### Option 2: Direct Browser Access
 
 Open http://localhost:4096 for direct Opencode interface.
+
+### OpenClaw CLI 命令参考
+
+**前提**: 安装时已自动添加别名 `bioclaw-openclaw`，如果不可用请重新加载 shell 配置：`source ~/.zshrc` 或 `source ~/.bashrc`
+
+**常用命令:**
+
+```bash
+# 诊断检查
+bioclaw-openclaw doctor
+
+# 查看/修改配置
+bioclaw-openclaw config get                    # 查看所有配置
+bioclaw-openclaw config set gateway.mode local # 设置本地模式
+
+# 通道管理
+bioclaw-openclaw channels status              # 查看通道状态
+bioclaw-openclaw channels login feishu        # 登录飞书
+bioclaw-openclaw channels logout feishu       # 退出飞书
+
+# 查看日志
+bioclaw-openclaw logs gateway                 # 查看 Gateway 日志
+
+# 重启服务
+bioclaw restart                               # 重启所有服务
+```
+
+**如果别名不可用，使用完整命令:**
+```bash
+docker exec bioclaw-openclaw node /app/openclaw.mjs <命令>
+```
 
 ---
 
