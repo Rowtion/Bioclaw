@@ -15,7 +15,7 @@ echo "🗑️  正在卸载 Bioclaw..."
 
 # 停止并删除容器
 echo "  停止 Docker 容器..."
-cd "$HOME/.bioclaw" 2>/dev/null && docker-compose down 2>/dev/null || true
+cd "$HOME/.bioclaw" 2>/dev/null && $DOCKER_COMPOSE down 2>/dev/null || true
 
 # 删除目录
 echo "  删除项目文件..."

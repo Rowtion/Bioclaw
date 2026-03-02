@@ -15,6 +15,15 @@ print_success() { echo -e "${GREEN}✅ $1${NC}"; }
 print_error() { echo -e "${RED}❌ $1${NC}"; }
 print_progress() { echo -e "${YELLOW}📊 $1${NC}"; }
 
+# 检测 docker compose 命令
+if command -v $DOCKER_COMPOSE &> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+elif docker compose version &> /dev/null; then
+    DOCKER_COMPOSE="docker compose"
+else
+    DOCKER_COMPOSE="docker-compose"
+fi
+
 # 进度条函数
 show_progress() {
     local duration=$1
@@ -76,7 +85,7 @@ cd "$HOME/.bioclaw"
 case "$1" in
     start)
         echo "🚀 启动 Bioclaw..."
-        docker-compose up -d
+        $DOCKER_COMPOSE up -d
         echo ""
         echo "✅ 已启动!"
         echo ""
@@ -87,11 +96,11 @@ case "$1" in
         ;;
     stop)
         echo "🛑 停止 Bioclaw..."
-        docker-compose down
+        $DOCKER_COMPOSE down
         echo "✅ 已停止"
         ;;
     status)
-        docker-compose ps
+        $DOCKER_COMPOSE ps
         ;;
     *)
         echo "用法: bioclaw [start|stop|status]"
@@ -115,7 +124,7 @@ print_status "第 4/5 步：构建 Docker 镜像..."
 print_progress "预计需要 5-10 分钟，请耐心等待..."
 
 cd "$PROJECT_DIR"
-docker-compose build --no-cache > /tmp/bioclaw-build.log 2>&1 &
+$DOCKER_COMPOSE build --no-cache > /tmp/bioclaw-build.log 2>&1 &
 BUILD_PID=$!
 
 # 显示进度动画
@@ -140,7 +149,7 @@ fi
 
 # 第 5 步：启动服务
 print_status "第 5/5 步：启动服务..."
-docker-compose up -d
+$DOCKER_COMPOSE up -d
 
 # 等待服务就绪
 print_status "等待服务启动..."

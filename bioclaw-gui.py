@@ -11,6 +11,7 @@ import os
 import threading
 import webbrowser
 import sys
+import shutil
 
 class BioclawGUI:
     def __init__(self, root):
@@ -20,6 +21,9 @@ class BioclawGUI:
         self.root.resizable(False, False)
         
         self.bioclaw_dir = os.path.expanduser("~/.bioclaw")
+        
+        # 检测 docker compose 命令
+        self.docker_compose_cmd = self._get_docker_compose_cmd()
         
         # 检查是否已安装
         if not os.path.exists(self.bioclaw_dir):
@@ -40,6 +44,38 @@ class BioclawGUI:
         
         self.create_widgets()
         self.check_status()
+    
+    def _get_docker_compose_cmd(self):
+        """检测使用 docker-compose 还是 docker compose"""
+        if shutil.which("docker-compose"):
+            return "docker-compose"
+        elif shutil.which("docker"):
+            # 检查是否支持 compose 子命令
+            try:
+                result = subprocess.run(
+                    ["docker", "compose", "version"],
+                    capture_output=True,
+                    text=True
+                )
+                if result.returncode == 0:
+                    return "docker compose"
+            except:
+                pass
+        return "docker-compose"  # 默认 fallback
+    
+    def _run_docker_compose(self, args, cwd=None):
+        """运行 docker compose 命令"""
+        if self.docker_compose_cmd == "docker compose":
+            cmd = ["docker", "compose"] + args
+        else:
+            cmd = ["docker-compose"] + args
+        
+        return subprocess.run(
+            cmd,
+            cwd=cwd or self.bioclaw_dir,
+            capture_output=True,
+            text=True
+        )
     
     def install_bioclaw(self):
         """运行安装脚本"""
@@ -105,8 +141,9 @@ class BioclawGUI:
         
         self.log_text = scrolledtext.ScrolledText(log_frame, height=8, wrap=tk.WORD)
         self.log_text.pack(fill='both', expand=True)
-        self.log_text.insert('end', "欢迎使用 Bioclaw！\\n")
-        self.log_text.insert('end', "密码: bioclaw\\n")
+        self.log_text.insert('end', "欢迎使用 Bioclaw！\n")
+        self.log_text.insert('end', f"使用命令: {self.docker_compose_cmd}\n")
+        self.log_text.insert('end', "密码: bioclaw\n")
         self.log_text.config(state='disabled')
         
         # 底部按钮
@@ -127,12 +164,13 @@ class BioclawGUI:
                     self.log("Bioclaw 未安装，请先运行 install.sh")
                     return
                 
-                result = subprocess.run(
-                    ["docker-compose", "ps"],
-                    cwd=self.bioclaw_dir,
-                    capture_output=True,
-                    text=True
-                )
+                result = self._run_docker_compose(["ps"])
+                
+                if result.returncode != 0:
+                    self.status_var.set("检查失败")
+                    self.log(f"检查失败: {result.stderr[:100]}")
+                    return
+                
                 if "Up" in result.stdout:
                     self.status_var.set("运行中")
                     self.log("Bioclaw 正在运行")
@@ -152,21 +190,16 @@ class BioclawGUI:
             self.start_btn.config(state='disabled')
             
             try:
-                result = subprocess.run(
-                    ["docker-compose", "up", "-d"],
-                    cwd=self.bioclaw_dir,
-                    capture_output=True,
-                    text=True
-                )
+                result = self._run_docker_compose(["up", "-d"])
                 
                 if result.returncode == 0:
                     self.log("启动成功！")
                     self.status_var.set("运行中")
                     messagebox.showinfo("成功", "Bioclaw 已启动！")
                 else:
-                    error_msg = result.stderr if result.stderr else "未知错误"
+                    error_msg = result.stderr[:200] if result.stderr else "未知错误"
                     self.log(f"启动失败: {error_msg}")
-                    messagebox.showerror("错误", f"启动失败:\\n{error_msg}")
+                    messagebox.showerror("错误", f"启动失败:\n{error_msg}")
             except Exception as e:
                 self.log(f"错误: {str(e)}")
                 messagebox.showerror("错误", str(e))
@@ -182,19 +215,14 @@ class BioclawGUI:
             self.stop_btn.config(state='disabled')
             
             try:
-                result = subprocess.run(
-                    ["docker-compose", "down"],
-                    cwd=self.bioclaw_dir,
-                    capture_output=True,
-                    text=True
-                )
+                result = self._run_docker_compose(["down"])
                 
                 if result.returncode == 0:
                     self.log("已停止")
                     self.status_var.set("已停止")
                     messagebox.showinfo("成功", "Bioclaw 已停止")
                 else:
-                    error_msg = result.stderr if result.stderr else "未知错误"
+                    error_msg = result.stderr[:200] if result.stderr else "未知错误"
                     self.log(f"停止失败: {error_msg}")
             except Exception as e:
                 self.log(f"错误: {str(e)}")
@@ -210,7 +238,7 @@ class BioclawGUI:
             self.log(f"已打开: {url}")
         except Exception as e:
             self.log(f"打开浏览器失败: {str(e)}")
-            messagebox.showerror("错误", f"无法打开浏览器:\\n{str(e)}")
+            messagebox.showerror("错误", f"无法打开浏览器:\n{str(e)}")
     
     def show_help(self):
         """显示帮助"""
@@ -232,7 +260,7 @@ class BioclawGUI:
     def log(self, message):
         """添加日志"""
         self.log_text.config(state='normal')
-        self.log_text.insert('end', message + '\\n')
+        self.log_text.insert('end', message + '\n')
         self.log_text.see('end')
         self.log_text.config(state='disabled')
 
@@ -243,7 +271,6 @@ def main():
     try:
         icon_path = os.path.expanduser("~/.bioclaw/assets/logo.svg")
         if os.path.exists(icon_path):
-            # macOS 上无法直接设置 SVG 图标，这里只是占位
             pass
     except:
         pass
