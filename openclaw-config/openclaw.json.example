@@ -1,0 +1,28 @@
+{
+  "agent": {
+    "model": "anthropic/claude-opus-4-6"
+  },
+  "channels": {
+    "feishu": {
+      "appId": "YOUR_FEISHU_APP_ID",
+      "appSecret": "YOUR_FEISHU_APP_SECRET",
+      "encryptKey": "YOUR_FEISHU_ENCRYPT_KEY",
+      "verificationToken": "YOUR_FEISHU_VERIFICATION_TOKEN",
+      "dmPolicy": "pairing",
+      "allowFrom": []
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "/root/.openclaw/workspace",
+      "sandbox": {
+        "mode": "off"
+      }
+    }
+  },
+  "tools": {
+    "exec": {
+      "enabled": true
+    }
+  }
+}

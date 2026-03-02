@@ -268,17 +268,37 @@ cp my_data.csv ~/.bioclaw/data/
 
 ### AI Assistant Usage
 
-1. Configure Opencode:
-```bash
-~/.opencode/bin/opencode auth login
-```
+#### Option 1: Feishu/Lark (飞书)
 
-2. Send message in Slack/Feishu:
-```
-"帮我用DESeq2做差异表达分析"
-"Plot a heatmap of top 50 genes"
-"Search PubMed for COVID-19 vaccine papers"
-```
+1. **Create Feishu App:**
+   - Go to [Feishu Developer Console](https://open.feishu.cn/app)
+   - Create a new enterprise app
+   - Enable "Bot" capability
+   - Get App ID, App Secret, Encrypt Key, Verification Token
+
+2. **Configure OpenClaw:**
+   ```bash
+   cd ~/.bioclaw
+   cp openclaw-config/openclaw.json.example openclaw-config/openclaw.json
+   # Edit and fill in your Feishu credentials
+   nano openclaw-config/openclaw.json
+   ```
+
+3. **Start all services:**
+   ```bash
+   bioclaw start
+   ```
+
+4. **Add bot to Feishu group and chat:**
+   ```
+   "帮我用DESeq2做差异表达分析"
+   "Plot a heatmap of top 50 genes"
+   "Search PubMed for COVID-19 vaccine papers"
+   ```
+
+#### Option 2: Direct Browser Access
+
+Open http://localhost:4096 for direct Opencode interface.
 
 ---
 

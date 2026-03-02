@@ -142,6 +142,14 @@ case "\$1" in
         echo "   JupyterLab: http://localhost:8888"
         echo "   Opencode:   http://localhost:4096"
         echo "   密码: bioclaw"
+        echo ""
+        echo "🤖 飞书机器人:"
+        if [ -f "openclaw-config/openclaw.json" ]; then
+            echo "   ✅ OpenClaw 配置存在，检查状态中..."
+        else
+            echo "   ⚠️  未配置飞书机器人"
+            echo "   💡 配置方法: cp openclaw-config/openclaw.json.example openclaw-config/openclaw.json"
+        fi
         ;;
     stop)
         echo "🛑 停止 Bioclaw..."
@@ -157,11 +165,19 @@ case "\$1" in
         echo "Docker 服务:"
         $DOCKER_COMPOSE ps
         echo ""
-        echo "Opencode:"
+        echo "Opencode (本地):"
         if pgrep -f "opencode serve" > /dev/null 2>&1; then
             echo "   ✅ Opencode 正在运行 (http://localhost:4096)"
         else
             echo "   ❌ Opencode 未运行"
+        fi
+        echo ""
+        echo "OpenClaw (飞书机器人):"
+        if docker ps | grep -q bioclaw-openclaw; then
+            echo "   ✅ OpenClaw 正在运行 (Gateway: ws://localhost:18789)"
+        else
+            echo "   ❌ OpenClaw 未运行"
+            echo "   💡 提示: 如需飞书机器人，请配置 openclaw-config/openclaw.json"
         fi
         ;;
     logs)

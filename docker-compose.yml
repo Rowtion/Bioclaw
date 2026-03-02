@@ -21,6 +21,22 @@ services:
     networks:
       - bioclaw-network
 
+  # OpenClaw Gateway (飞书/Slack 机器人)
+  openclaw:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: bioclaw-openclaw
+    ports:
+      - "18789:18789"  # Gateway WebSocket
+    volumes:
+      - ./openclaw-config:/root/.openclaw
+      - ./skills:/root/.openclaw/workspace/skills:ro
+    environment:
+      - OPENCODE_URL=http://host.docker.internal:4096
+    restart: unless-stopped
+    networks:
+      - bioclaw-network
+    # 需要飞书/Slack token 配置才能正常工作
+
 networks:
   bioclaw-network:
     driver: bridge
