@@ -199,20 +199,33 @@ if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# 添加 OpenClaw CLI 别名
-if ! grep -q "alias bioclaw-openclaw" "$HOME/.zshrc" 2>/dev/null; then
+# 添加 OpenClaw CLI 别名（函数形式，支持交互式命令）
+if ! grep -q "bioclaw-openclaw()" "$HOME/.zshrc" 2>/dev/null; then
     echo '' >> "$HOME/.zshrc"
-    echo '# Bioclaw OpenClaw CLI 别名' >> "$HOME/.zshrc"
-    echo 'alias bioclaw-openclaw="docker exec bioclaw-openclaw node /app/openclaw.mjs"' >> "$HOME/.zshrc"
+    echo '# Bioclaw OpenClaw CLI' >> "$HOME/.zshrc"
+    echo 'bioclaw-openclaw() {' >> "$HOME/.zshrc"
+    echo '    if [[ "$1" == "config" && -z "$2" ]] || [[ "$1" == "channels" && "$2" == "login" ]]; then' >> "$HOME/.zshrc"
+    echo '        docker exec -it bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.zshrc"
+    echo '    else' >> "$HOME/.zshrc"
+    echo '        docker exec bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.zshrc"
+    echo '    fi' >> "$HOME/.zshrc"
+    echo '}' >> "$HOME/.zshrc"
 fi
-if ! grep -q "alias bioclaw-openclaw" "$HOME/.bashrc" 2>/dev/null; then
+if ! grep -q "bioclaw-openclaw()" "$HOME/.bashrc" 2>/dev/null; then
     echo '' >> "$HOME/.bashrc"
-    echo '# Bioclaw OpenClaw CLI 别名' >> "$HOME/.bashrc"
-    echo 'alias bioclaw-openclaw="docker exec bioclaw-openclaw node /app/openclaw.mjs"' >> "$HOME/.bashrc"
+    echo '# Bioclaw OpenClaw CLI' >> "$HOME/.bashrc"
+    echo 'bioclaw-openclaw() {' >> "$HOME/.bashrc"
+    echo '    if [[ "$1" == "config" && -z "$2" ]] || [[ "$1" == "channels" && "$2" == "login" ]]; then' >> "$HOME/.bashrc"
+    echo '        docker exec -it bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.bashrc"
+    echo '    else' >> "$HOME/.bashrc"
+    echo '        docker exec bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.bashrc"
+    echo '    fi' >> "$HOME/.bashrc"
+    echo '}' >> "$HOME/.bashrc"
 fi
 
 print_success "快捷命令创建完成"
-print_success "OpenClaw CLI 别名已添加 (bioclaw-openclaw)"
+print_success "OpenClaw CLI 已添加 (bioclaw-openclaw)"
+print_success "提示: 运行 'source ~/.zshrc' 或重新打开终端生效"
 
 # 第 5 步：构建镜像（带进度）
 print_status "第 5/6 步：构建 Docker 镜像..."
