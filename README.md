@@ -123,6 +123,7 @@ After 5-10 minutes, access your research environment:
 |---------|-----|----------|
 | **RStudio** | http://localhost:8787 | `bioclaw` |
 | **JupyterLab** | http://localhost:8888 | `bioclaw` |
+| **AI Assistant (Opencode)** | http://localhost:4096 | - |
 
 ---
 
@@ -143,17 +144,30 @@ After 5-10 minutes, access your research environment:
 ```bash
 # Example 1: Start and analyze data
 $ bioclaw start
-✅ Bioclaw started!
-# Open http://localhost:8787 in browser
+🚀 启动 Bioclaw...
+🤖 启动 Opencode...
+
+✅ 已启动!
+
+📊 访问地址:
+   RStudio:    http://localhost:8787
+   JupyterLab: http://localhost:8888
+   Opencode:   http://localhost:4096
+   密码: bioclaw
 
 # Example 2: Use AI assistant (in Slack/Feishu)
 User: "用opencode分析我的单细胞数据"
 AI: "正在使用scanpy进行分析..."
 [Generates UMAP plot, saves to ./outputs/]
 
-# Example 3: Stop when done
+# Example 3: Check status
+$ bioclaw status
+📊 服务状态:
+   ✅ Opencode 正在运行 (http://localhost:4096)
+
+# Example 4: Stop when done
 $ bioclaw stop
-✅ Bioclaw stopped
+✅ 已停止
 ```
 
 ---

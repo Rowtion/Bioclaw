@@ -16,6 +16,7 @@ curl -fsSL https://raw.githubusercontent.com/Rowtion/Bioclaw/main/install.sh | b
 
 **安装过程全自动：**
 - ✅ 自动检测并安装 Docker
+- ✅ 自动安装 Opencode
 - ✅ 自动下载 Bioclaw
 - ✅ 自动构建环境（约 5-10 分钟）
 - ✅ 自动启动所有服务
@@ -48,6 +49,7 @@ bioclaw logs
 
 - **RStudio**（数据分析）：http://localhost:8787
 - **JupyterLab**（Python 编程）：http://localhost:8888
+- **AI 助手**（Opencode）：http://localhost:4096
 
 **默认密码：** `bioclaw`
 

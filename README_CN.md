@@ -122,6 +122,7 @@ bioclaw start
 |---------|-----|----------|
 | **RStudio** | http://localhost:8787 | `bioclaw` |
 | **JupyterLab** | http://localhost:8888 | `bioclaw` |
+| **AI 助手 (Opencode)** | http://localhost:4096 | - |
 
 ---
 
@@ -142,17 +143,30 @@ bioclaw start
 ```bash
 # 示例 1：启动并分析数据
 $ bioclaw start
-✅ Bioclaw 已启动！
-# 在浏览器中打开 http://localhost:8787
+🚀 启动 Bioclaw...
+🤖 启动 Opencode...
+
+✅ 已启动!
+
+📊 访问地址:
+   RStudio:    http://localhost:8787
+   JupyterLab: http://localhost:8888
+   Opencode:   http://localhost:4096
+   密码: bioclaw
 
 # 示例 2：使用 AI 助手（在 Slack/飞书中）
 用户："用opencode分析我的单细胞数据"
 AI："正在使用scanpy进行分析..."
 [生成 UMAP 图，保存到 ./outputs/]
 
-# 示例 3：完成后停止
+# 示例 3：查看状态
+$ bioclaw status
+📊 服务状态:
+   ✅ Opencode 正在运行 (http://localhost:4096)
+
+# 示例 4：完成后停止
 $ bioclaw stop
-✅ Bioclaw 已停止
+✅ 已停止
 ```
 
 ---

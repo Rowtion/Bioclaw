@@ -16,7 +16,7 @@ print_error() { echo -e "${RED}❌ $1${NC}"; }
 print_progress() { echo -e "${YELLOW}📊 $1${NC}"; }
 
 # 检测 docker compose 命令
-if command -v $DOCKER_COMPOSE &> /dev/null; then
+if command -v docker-compose &> /dev/null; then
     DOCKER_COMPOSE="docker-compose"
 elif docker compose version &> /dev/null; then
     DOCKER_COMPOSE="docker compose"
@@ -75,35 +75,93 @@ else
 fi
 print_success "代码下载完成"
 
-# 第 3 步：创建命令
-print_status "第 3/5 步：创建快捷命令..."
+# 第 3 步：安装 Opencode
+print_status "第 3/6 步：安装 Opencode..."
+if ! command -v opencode >/dev/null 2>&1; then
+    if [ ! -f "$HOME/.opencode/bin/opencode" ]; then
+        print_status "正在下载 Opencode..."
+        curl -fsSL https://opencode.dev/install.sh | bash
+        print_success "Opencode 安装完成"
+    else
+        print_success "Opencode 已安装"
+    fi
+    # 确保 PATH 包含 opencode
+    if ! echo "$PATH" | grep -q "$HOME/.opencode/bin"; then
+        echo 'export PATH="$HOME/.opencode/bin:$PATH"' >> "$HOME/.bashrc"
+        echo 'export PATH="$HOME/.opencode/bin:$PATH"' >> "$HOME/.zshrc" 2>/dev/null || true
+        export PATH="$HOME/.opencode/bin:$PATH"
+    fi
+else
+    print_success "Opencode 已安装"
+fi
+
+# 第 4 步：创建命令
+print_status "第 4/6 步：创建快捷命令..."
 mkdir -p "$HOME/.local/bin"
 
-cat > "$HOME/.local/bin/bioclaw" << 'EOF'
+cat > "$HOME/.local/bin/bioclaw" << EOF
 #!/bin/bash
 cd "$HOME/.bioclaw"
-case "$1" in
+
+# 检测 docker compose 命令
+if command -v docker-compose \&> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+elif docker compose version \&> /dev/null; then
+    DOCKER_COMPOSE="docker compose"
+else
+    DOCKER_COMPOSE="docker-compose"
+fi
+
+# 确保 opencode 在 PATH 中
+export PATH="\$HOME/.opencode/bin:\$PATH"
+
+case "\$1" in
     start)
         echo "🚀 启动 Bioclaw..."
-        $DOCKER_COMPOSE up -d
+        # 启动 Docker 服务
+        \$DOCKER_COMPOSE up -d
+        # 启动 Opencode（在后台）
+        if ! pgrep -f "opencode serve" > /dev/null 2>&1; then
+            echo "🤖 启动 Opencode..."
+            nohup opencode serve --port 4096 > /tmp/opencode.log 2>&1 &
+            sleep 2
+        fi
         echo ""
         echo "✅ 已启动!"
         echo ""
         echo "📊 访问地址:"
         echo "   RStudio:    http://localhost:8787"
         echo "   JupyterLab: http://localhost:8888"
+        echo "   Opencode:   http://localhost:4096"
         echo "   密码: bioclaw"
         ;;
     stop)
         echo "🛑 停止 Bioclaw..."
-        $DOCKER_COMPOSE down
+        # 停止 Docker 服务
+        \$DOCKER_COMPOSE down
+        # 停止 Opencode
+        pkill -f "opencode serve" 2>/dev/null || true
         echo "✅ 已停止"
         ;;
     status)
+        echo "📊 服务状态:"
+        echo ""
+        echo "Docker 服务:"
         $DOCKER_COMPOSE ps
+        echo ""
+        echo "Opencode:"
+        if pgrep -f "opencode serve" > /dev/null 2>&1; then
+            echo "   ✅ Opencode 正在运行 (http://localhost:4096)"
+        else
+            echo "   ❌ Opencode 未运行"
+        fi
+        ;;
+    logs)
+        echo "📋 Docker 日志:"
+        $DOCKER_COMPOSE logs -f
         ;;
     *)
-        echo "用法: bioclaw [start|stop|status]"
+        echo "用法: bioclaw [start|stop|status|logs]"
         ;;
 esac
 EOF
@@ -119,8 +177,8 @@ fi
 
 print_success "快捷命令创建完成"
 
-# 第 4 步：构建镜像（带进度）
-print_status "第 4/5 步：构建 Docker 镜像..."
+# 第 5 步：构建镜像（带进度）
+print_status "第 5/6 步：构建 Docker 镜像..."
 print_progress "预计需要 5-10 分钟，请耐心等待..."
 
 cd "$PROJECT_DIR"
@@ -147,8 +205,8 @@ else
     exit 1
 fi
 
-# 第 5 步：启动服务
-print_status "第 5/5 步：启动服务..."
+# 第 6 步：启动服务
+print_status "第 6/6 步：启动服务..."
 $DOCKER_COMPOSE up -d
 
 # 等待服务就绪
