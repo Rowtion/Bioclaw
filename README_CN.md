@@ -128,12 +128,12 @@ bioclaw start
 ## 📸 截图
 
 <p align="center">
-  <img src="docs/screenshots/rstudio.png" alt="RStudio" width="45%">
+  <img src="rstudio.png" alt="RStudio" width="45%">
   &nbsp;&nbsp;
-  <img src="docs/screenshots/jupyter.png" alt="JupyterLab" width="45%">
+  <img src="jupyter.png" alt="JupyterLab" width="45%">
 </p>
 
-*左：RStudio Server 运行 DESeq2 分析 | 右：JupyterLab 运行 scanpy*
+*RStudio Server 和 JupyterLab 界面*
 
 ---
 
