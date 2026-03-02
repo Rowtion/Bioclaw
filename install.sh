@@ -199,7 +199,11 @@ if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# 添加 OpenClaw CLI 别名（函数形式，支持交互式命令）
+# 添加 OpenClaw CLI 函数（支持交互式命令）
+# 先删除可能存在的旧 alias，避免冲突
+sed -i '/^alias bioclaw-openclaw=/d' "$HOME/.zshrc" 2>/dev/null || true
+sed -i '/^alias bioclaw-openclaw=/d' "$HOME/.bashrc" 2>/dev/null || true
+
 if ! grep -q "bioclaw-openclaw()" "$HOME/.zshrc" 2>/dev/null; then
     echo '' >> "$HOME/.zshrc"
     echo '# Bioclaw OpenClaw CLI' >> "$HOME/.zshrc"
