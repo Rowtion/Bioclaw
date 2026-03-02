@@ -24,12 +24,35 @@ class OpencodeBridge:
         self.base_url = base_url.rstrip("/")
         self.session_id: Optional[str] = None
         
+    def health_check(self) -> tuple[bool, str]:
+        """检查 Opencode 服务是否可用
+        
+        Returns:
+            tuple: (是否可用, 错误信息)
+        """
+        try:
+            resp = requests.get(f"{self.base_url}/status", timeout=5)
+            resp.raise_for_status()
+            return True, ""
+        except requests.exceptions.ConnectionError:
+            return False, "无法连接到 Opencode。请运行: bioclaw start"
+        except requests.exceptions.Timeout:
+            return False, "连接 Opencode 超时。服务可能正在启动中，请稍后再试"
+        except Exception as e:
+            return False, f"Opencode 服务异常: {e}"
+    
     def list_sessions(self) -> list:
         """获取所有 session 列表"""
         try:
             resp = requests.get(f"{self.base_url}/session", timeout=10)
             resp.raise_for_status()
             return resp.json()
+        except requests.exceptions.ConnectionError:
+            print("❌ 无法连接到 Opencode 服务", file=sys.stderr)
+            return []
+        except requests.exceptions.Timeout:
+            print("❌ 获取 session 列表超时", file=sys.stderr)
+            return []
         except Exception as e:
             print(f"⚠️  获取 session 列表失败: {e}", file=sys.stderr)
             return []
@@ -46,6 +69,12 @@ class OpencodeBridge:
             data = resp.json()
             self.session_id = data.get("id")
             return self.session_id
+        except requests.exceptions.ConnectionError:
+            print("❌ 创建 session 失败: 无法连接到 Opencode", file=sys.stderr)
+            return None
+        except requests.exceptions.Timeout:
+            print("❌ 创建 session 超时", file=sys.stderr)
+            return None
         except Exception as e:
             print(f"⚠️  创建 session 失败: {e}", file=sys.stderr)
             return None
@@ -70,10 +99,10 @@ class OpencodeBridge:
         sid = session_id or self.session_id
         if not sid:
             sid = self.get_or_create_session()
-        
+
         if not sid:
             return {"error": "无法获取或创建 session"}
-        
+
         try:
             resp = requests.post(
                 f"{self.base_url}/session/{sid}/message",
@@ -84,17 +113,19 @@ class OpencodeBridge:
             )
             resp.raise_for_status()
             return resp.json()
+        except requests.exceptions.ConnectionError:
+            return {"error": "发送消息失败: 无法连接到 Opencode 服务"}
         except requests.exceptions.Timeout:
-            return {"error": f"请求超时 (>{DEFAULT_TIMEOUT}s)"}
+            return {"error": f"请求超时 (>{DEFAULT_TIMEOUT}s)。任务可能仍在后台运行，可以通过 session 查看结果"}
         except Exception as e:
-            return {"error": f"请求失败: {e}"}
+            return {"error": f"发送消息失败: {e}"}
     
     def get_messages(self, session_id: Optional[str] = None, limit: int = 10) -> list:
         """获取 session 消息历史"""
         sid = session_id or self.session_id
         if not sid:
             return []
-        
+
         try:
             resp = requests.get(
                 f"{self.base_url}/session/{sid}/message?limit={limit}",
@@ -102,6 +133,12 @@ class OpencodeBridge:
             )
             resp.raise_for_status()
             return resp.json()
+        except requests.exceptions.ConnectionError:
+            print("❌ 获取消息失败: 无法连接到 Opencode", file=sys.stderr)
+            return []
+        except requests.exceptions.Timeout:
+            print("❌ 获取消息超时", file=sys.stderr)
+            return []
         except Exception as e:
             print(f"⚠️  获取消息失败: {e}", file=sys.stderr)
             return []
@@ -125,33 +162,38 @@ def main():
     if len(sys.argv) < 2:
         print("用法: python bridge.py '你的消息'")
         sys.exit(1)
-    
+
     message = sys.argv[1]
-    
+
     # 创建桥接客户端
     bridge = OpencodeBridge()
-    
-    # 确保有 session
+
+    # 第 1 步：健康检查
+    is_healthy, error_msg = bridge.health_check()
+    if not is_healthy:
+        print(f"❌ {error_msg}")
+        print("💡 提示: 运行 'bioclaw start' 启动所有服务")
+        sys.exit(1)
+
+    # 第 2 步：确保有 session
     if not bridge.get_or_create_session():
-        print("❌ 无法连接到 Opencode。请确保服务已启动: opencode serve --port 4096")
+        print("❌ 无法创建或获取 session")
         sys.exit(1)
-    
+
     print(f"📤 发送消息: {message[:50]}...")
-    
-    # 发送消息
+
+    # 第 3 步：发送消息
     result = bridge.send_message(message)
-    
+
     if "error" in result:
-        print(f"❌ 错误: {result['error']}")
+        print(f"❌ {result['error']}")
         sys.exit(1)
-    
-    # 等待一下让 Opencode 处理
+
+    # 第 4 步：等待并获取回复
     time.sleep(2)
-    
-    # 获取回复
     messages = bridge.get_messages(limit=5)
     response = bridge.extract_last_response(messages)
-    
+
     if response:
         print(response)
     else:
