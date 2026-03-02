@@ -26,7 +26,7 @@ services:
     image: ghcr.io/openclaw/openclaw:latest
     container_name: bioclaw-openclaw
     ports:
-      - "18789:18789"  # Gateway WebSocket
+      - "18790:18789"  # Gateway WebSocket (18790外部, 18789内部)
     volumes:
       - ./openclaw-config:/root/.openclaw
       - ./skills:/root/.openclaw/workspace/skills:ro
