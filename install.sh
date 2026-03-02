@@ -207,8 +207,9 @@ sed -i '/^alias bioclaw-openclaw=/d' "$HOME/.bashrc" 2>/dev/null || true
 if ! grep -q "bioclaw-openclaw()" "$HOME/.zshrc" 2>/dev/null; then
     echo '' >> "$HOME/.zshrc"
     echo '# Bioclaw OpenClaw CLI' >> "$HOME/.zshrc"
+    echo 'unalias bioclaw-openclaw 2>/dev/null || true' >> "$HOME/.zshrc"
     echo 'bioclaw-openclaw() {' >> "$HOME/.zshrc"
-    echo '    if [[ "$1" == "config" && -z "$2" ]] || [[ "$1" == "channels" && "$2" == "login" ]]; then' >> "$HOME/.zshrc"
+    echo '    if [[ "$1" == "config" && -z "$2" ]] || [[ "$1" == "onboard" ]] || [[ "$1" == "channels" && "$2" == "login" ]]; then' >> "$HOME/.zshrc"
     echo '        docker exec -it bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.zshrc"
     echo '    else' >> "$HOME/.zshrc"
     echo '        docker exec bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.zshrc"
@@ -218,8 +219,9 @@ fi
 if ! grep -q "bioclaw-openclaw()" "$HOME/.bashrc" 2>/dev/null; then
     echo '' >> "$HOME/.bashrc"
     echo '# Bioclaw OpenClaw CLI' >> "$HOME/.bashrc"
+    echo 'unalias bioclaw-openclaw 2>/dev/null || true' >> "$HOME/.bashrc"
     echo 'bioclaw-openclaw() {' >> "$HOME/.bashrc"
-    echo '    if [[ "$1" == "config" && -z "$2" ]] || [[ "$1" == "channels" && "$2" == "login" ]]; then' >> "$HOME/.bashrc"
+    echo '    if [[ "$1" == "config" && -z "$2" ]] || [[ "$1" == "onboard" ]] || [[ "$1" == "channels" && "$2" == "login" ]]; then' >> "$HOME/.bashrc"
     echo '        docker exec -it bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.bashrc"
     echo '    else' >> "$HOME/.bashrc"
     echo '        docker exec bioclaw-openclaw node /app/openclaw.mjs "$@"' >> "$HOME/.bashrc"
