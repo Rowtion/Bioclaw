@@ -212,15 +212,6 @@ cd ~/.bioclaw
 bash install.sh
 ```
 
-### Method 3: GUI Interface (macOS)
-```bash
-# Install
-bash install.sh
-
-# Launch GUI
-open ~/.bioclaw/Bioclaw.app
-```
-
 ---
 
 ## 📚 Usage Guide

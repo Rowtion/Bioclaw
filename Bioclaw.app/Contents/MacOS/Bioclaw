@@ -1,5 +1,0 @@
-#!/bin/bash
-# Bioclaw GUI Launcher for macOS
-
-cd "$HOME/.bioclaw"
-python3 bioclaw-gui.py

@@ -211,15 +211,6 @@ cd ~/.bioclaw
 bash install.sh
 ```
 
-### 方式 3：图形界面（macOS）
-```bash
-# 安装
-bash install.sh
-
-# 启动 GUI
-open ~/.bioclaw/Bioclaw.app
-```
-
 ---
 
 ## 📚 使用指南
