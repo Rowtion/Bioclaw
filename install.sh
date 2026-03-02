@@ -47,7 +47,7 @@ show_progress() {
 }
 
 # 第 1 步：检查 Docker
-print_status "第 1/5 步：检查 Docker..."
+print_status "第 1/6 步：检查 Docker..."
 if ! command -v docker >/dev/null 2>&1; then
     print_error "Docker 未安装"
     echo ""
@@ -64,16 +64,24 @@ if ! docker info >/dev/null 2>&1; then
 fi
 print_success "Docker 检查通过"
 
-# 第 2 步：下载代码
-PROJECT_DIR="$HOME/.bioclaw"
-print_status "第 2/5 步：下载 Bioclaw 代码..."
-
-if [ ! -d "$PROJECT_DIR" ]; then
-    git clone --depth 1 https://github.com/Rowtion/Bioclaw.git "$PROJECT_DIR" >/dev/null 2>&1
+# 第 2 步：检测/下载代码
+# 检测当前目录是否已经是 Bioclaw 项目（开发者模式）
+if [ -f "docker-compose.yml" ] && [ -f "CLAUDE.md" ] && [ -d "scientific-skills" ]; then
+    PROJECT_DIR="$(pwd)"
+    print_status "第 2/6 步：检测到本地 Bioclaw 项目..."
+    print_success "使用当前目录: $PROJECT_DIR"
 else
-    cd "$PROJECT_DIR" && git pull >/dev/null 2>&1
+    # 用户模式：安装到 ~/.bioclaw
+    PROJECT_DIR="$HOME/.bioclaw"
+    print_status "第 2/6 步：下载 Bioclaw 代码..."
+    
+    if [ ! -d "$PROJECT_DIR" ]; then
+        git clone --depth 1 https://github.com/Rowtion/Bioclaw.git "$PROJECT_DIR" >/dev/null 2>&1
+    else
+        cd "$PROJECT_DIR" && git pull >/dev/null 2>&1
+    fi
+    print_success "代码下载完成"
 fi
-print_success "代码下载完成"
 
 # 第 3 步：安装 Opencode
 print_status "第 3/6 步：安装 Opencode..."
